@@ -1,3 +1,4 @@
+import asyncio
 import pygame
 import random
 import os
@@ -8,7 +9,7 @@ pygame.font.init()
 
 WIDTH, HEIGHT = 800, 850
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("name of Game!")
+pygame.display.set_caption("Space Race!")
 
 HEALTH_FONT = pygame.font.SysFont('Times New Roman', 40) #here we are defineing the font and size of the text
 WINNER_FONT = pygame.font.SysFont('Times New Roman', 100)#here we declare another font
@@ -159,7 +160,7 @@ def draw_winner(text):
     pygame.display.update()
     pygame.time.delay(5000)
 
-def main():
+async def main():
     yellow = pygame.Rect((WIDTH/2)-(YELLOW_SPACESHIP_WIDTH/2)-5, HEIGHT-(YELLOW_SPACESHIP_HEIGHT-2), YELLOW_SPACESHIP_WIDTH, YELLOW_SPACESHIP_HEIGHT)
     yellow_health = 4
     clock = pygame.time.Clock()
@@ -207,10 +208,10 @@ def main():
 
         pygame.display.update()
 
+        await asyncio.sleep(0)
+
 
     pygame.quit()
     
 
-
-if __name__ == "__main__":
-    main()
+asyncio.run( main() )
